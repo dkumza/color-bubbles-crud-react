@@ -17,7 +17,7 @@ export default function Create({ setCreate }) {
    const handlePosition = () => {
       setX(rand(0, 700 - size));
       setY(rand(0, 800 - size));
-      console.log(x, y);
+      //   console.log(x, y, size);
    };
 
    const add = () => {
@@ -52,7 +52,7 @@ export default function Create({ setCreate }) {
                   max={200}
                   step={1}
                   value={size}
-                  onChange={(e) => setSize(e.target.value)}
+                  onChange={(e) => setSize(parseInt(e.target.value))}
                   className="form-range"
                />
             </div>

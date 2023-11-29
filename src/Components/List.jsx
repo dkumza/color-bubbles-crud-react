@@ -4,9 +4,9 @@ import { useState } from "react";
 export default function List({ colors, setRemove, setEdit, position }) {
    const [hoveredElement, setHoveredElement] = useState(null);
 
-   const getWidth = (e) => {
-      console.log(e);
-   };
+   //    const getWidth = (e) => {
+   //       console.log(e);
+   //    };
 
    const handleMouseOver = (colorId) => {
       setHoveredElement(colorId);
@@ -19,20 +19,18 @@ export default function List({ colors, setRemove, setEdit, position }) {
       <div className="card mt-5">
          <div className="card-body">
             <h5 className="card-title">Bubbles space</h5>
-            <ul className="window list-group">
-               {colors === null && (
-                  <li className="list-group-item">Loading...</li>
-               )}
+            <div className="window ">
+               {colors === null && <div className="">Loading...</div>}
                {colors !== null && !colors.length && (
-                  <li className="list-group-item">New bubbles appears here</li>
+                  <div className="">New bubbles appears here</div>
                )}
                {colors !== null &&
                   colors.length !== 0 &&
                   colors.map((color) => (
-                     <li
+                     <div
                         key={color.id}
                         className="bubble"
-                        onClick={(e) => getWidth(e)}
+                        // onClick={(e) => getWidth(e)}
                      >
                         <div className="ball-bin">
                            <div
@@ -41,8 +39,8 @@ export default function List({ colors, setRemove, setEdit, position }) {
                               className="color-ball"
                               style={{
                                  backgroundColor: color.color,
-                                 width: color.size + "px",
-                                 height: color.size + "px",
+                                 width: color.size,
+                                 height: color.size,
                                  top: color.y,
                                  left: color.x,
                               }}
@@ -66,9 +64,9 @@ export default function List({ colors, setRemove, setEdit, position }) {
                               )}
                            </div>
                         </div>
-                     </li>
+                     </div>
                   ))}
-            </ul>
+            </div>
          </div>
       </div>
    );

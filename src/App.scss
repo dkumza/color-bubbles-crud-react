@@ -6,7 +6,7 @@
 
    .window {
       position: relative;
-      border: 1px solid gray;
+      // border: 1px solid gray;
       width: 700px;
       height: 800px;
 
@@ -37,6 +37,7 @@
       .color-ball:hover {
          cursor: pointer;
          transform: scale(0.9);
+         z-index: 10;
       }
 
       .edit-btn {
