@@ -1,8 +1,12 @@
 /* eslint-disable react/prop-types */
 import { useState } from "react";
 
-export default function List({ colors, setRemove, setEdit }) {
+export default function List({ colors, setRemove, setEdit, position }) {
    const [hoveredElement, setHoveredElement] = useState(null);
+
+   const getWidth = (e) => {
+      console.log(e);
+   };
 
    const handleMouseOver = (colorId) => {
       setHoveredElement(colorId);
@@ -14,18 +18,22 @@ export default function List({ colors, setRemove, setEdit }) {
    return (
       <div className="card mt-5">
          <div className="card-body">
-            <h5 className="card-title">Colors</h5>
-            <ul className="list-group">
+            <h5 className="card-title">Bubbles space</h5>
+            <ul className="window list-group">
                {colors === null && (
                   <li className="list-group-item">Loading...</li>
                )}
                {colors !== null && !colors.length && (
-                  <li className="list-group-item">No colors yet</li>
+                  <li className="list-group-item">New bubbles appears here</li>
                )}
                {colors !== null &&
                   colors.length !== 0 &&
                   colors.map((color) => (
-                     <li key={color.id} className="list-group-item">
+                     <li
+                        key={color.id}
+                        className="bubble"
+                        onClick={(e) => getWidth(e)}
+                     >
                         <div className="ball-bin">
                            <div
                               onMouseOver={() => handleMouseOver(color.id)}
@@ -35,6 +43,8 @@ export default function List({ colors, setRemove, setEdit }) {
                                  backgroundColor: color.color,
                                  width: color.size + "px",
                                  height: color.size + "px",
+                                 top: color.y,
+                                 left: color.x,
                               }}
                            >
                               {hoveredElement === color.id && (

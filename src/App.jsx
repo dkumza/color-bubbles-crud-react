@@ -16,10 +16,11 @@ function App() {
    const [clear, setClear] = useState(null); // destroy
    const [edit, setEdit] = useState(null);
    const [updateBubble, setUpdateBubble] = useState(null);
+   // const [position, setPosition] = useState([0, 0]);
 
    useEffect(() => {
       // imitate fetch from server
-      setTimeout((_) => {
+      setTimeout(() => {
          setColors(read(KEY));
       }, 100);
    }, []);
@@ -29,7 +30,7 @@ function App() {
          return;
       }
       const id = store(KEY, create);
-      setColors((c) => [{ ...create, id }, ...c]);
+      setColors((c) => [...c, { ...create, id }]);
    }, [create]);
 
    useEffect(() => {
@@ -61,7 +62,12 @@ function App() {
                <Create setCreate={setCreate} />
             </div>
             <div className="col-7">
-               <List colors={colors} setRemove={setRemove} setEdit={setEdit} />
+               <List
+                  colors={colors}
+                  setRemove={setRemove}
+                  setEdit={setEdit}
+                  // position={position}
+               />
             </div>
          </div>
          <Delete remove={remove} setRemove={setRemove} setClear={setClear} />

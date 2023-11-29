@@ -4,6 +4,20 @@
 .user-87548 {
    font-family: "Poppins", sans-serif;
 
+   .window {
+      position: relative;
+      border: 1px solid black;
+      width: 700px;
+      height: 800px;
+
+      .bubble {
+         list-style-type: none;
+         position: absolute;
+         margin: 0;
+         padding: 0;
+      }
+   }
+
    .ball-bin {
       display: flex;
       justify-content: space-between;

@@ -1,16 +1,32 @@
+/* eslint-disable react/prop-types */
 import { useState } from "react";
 
 export default function Create({ setCreate }) {
    const [color, setColor] = useState("#ffffff");
    const [size, setSize] = useState(100);
+   const [x, setX] = useState(rand(0, 700 - size));
+   const [y, setY] = useState(rand(0, 800 - size));
 
-   const add = (_) => {
+   function rand(min, max) {
+      min = Math.ceil(min);
+      max = Math.floor(max);
+      return Math.floor(Math.random() * (max - min + 1) + min); // The maximum is inclusive and the minimum is inclusive
+   }
+
+   // get random X and Y values
+   const handlePosition = () => {
+      setX(rand(0, 700 - size));
+      setY(rand(0, 800 - size));
+      console.log(x, y);
+   };
+
+   const add = () => {
       setCreate({
          color,
          size: parseInt(size),
+         x,
+         y,
       });
-      //   setColor("#ffffff");
-      //   setSize(100);
    };
 
    return (
@@ -18,7 +34,7 @@ export default function Create({ setCreate }) {
          <div className="card-body">
             <h5 className="card-title">Create new Color Bubble</h5>
             <div className="mb-3">
-               <label className="form-label">Color</label>
+               <label className="form-label">Select color</label>
                <input
                   type="color"
                   value={color}
@@ -28,7 +44,7 @@ export default function Create({ setCreate }) {
             </div>
             <div className="mb-3">
                <label className="form-label">
-                  Size <b>{size}</b>
+                  Choose Size <b>{size}</b>
                </label>
                <input
                   type="range"
@@ -42,7 +58,10 @@ export default function Create({ setCreate }) {
             </div>
             <button
                type="button"
-               onClick={add}
+               onClick={() => {
+                  add();
+                  handlePosition(size);
+               }}
                className="btn btn-outline-primary"
             >
                Add Color
