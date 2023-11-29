@@ -17,49 +17,42 @@ function App() {
    const [edit, setEdit] = useState(null);
    const [updateBubble, setUpdateBubble] = useState(null);
 
-   useEffect((_) => {
+   useEffect(() => {
       // imitate fetch from server
       setTimeout((_) => {
          setColors(read(KEY));
       }, 100);
-
-      console.log(read(KEY));
    }, []);
 
-   useEffect(
-      (_) => {
-         if (null === create) {
-            return;
-         }
-         const id = store(KEY, create);
-         setColors((c) => [{ ...create, id }, ...c]);
-      },
-      [create]
-   );
+   useEffect(() => {
+      if (null === create) {
+         return;
+      }
+      const id = store(KEY, create);
+      setColors((c) => [{ ...create, id }, ...c]);
+   }, [create]);
 
-   useEffect(
-      (_) => {
-         if (null === clear) {
-            return;
-         }
-         destroy(KEY, clear.id);
-         setColors((c) => c.filter((color) => color.id !== clear.id));
-         setClear(null);
-         setRemove(null);
-      },
-      [clear]
-   );
+   useEffect(() => {
+      if (null === clear) {
+         return;
+      }
+      destroy(KEY, clear.id);
+      setColors((c) => c.filter((color) => color.id !== clear.id));
+      setClear(null);
+      setRemove(null);
+   }, [clear]);
 
-   // useEffect(_ => {
-   //   if (null === update) {
-   //     return;
-   //   }
-   //   update(KEY, update);
-   //   setColors(c => c.map(color => color.id === update.id ? update : color));
-   //   setUpdate(null);
-   //   setEdit(null);
-   // }
-   // , [update]);
+   useEffect(() => {
+      if (null === updateBubble) {
+         return;
+      }
+      update(KEY, updateBubble);
+      setColors((c) =>
+         c.map((color) => (color.id === updateBubble.id ? updateBubble : color))
+      );
+      setUpdateBubble(null);
+      setEdit(null);
+   }, [updateBubble]);
 
    return (
       <div className="container user-87548">
