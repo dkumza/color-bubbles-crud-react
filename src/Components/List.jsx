@@ -1,12 +1,12 @@
 /* eslint-disable react/prop-types */
 import { useState } from "react";
 
-export default function List({ colors, setRemove, setEdit, position }) {
+export default function List({ colors, setRemove, setEdit }) {
    const [hoveredElement, setHoveredElement] = useState(null);
 
-   //    const getWidth = (e) => {
-   //       console.log(e);
-   //    };
+   const getWidth = (e) => {
+      console.log(e);
+   };
 
    const handleMouseOver = (colorId) => {
       setHoveredElement(colorId);
@@ -20,9 +20,12 @@ export default function List({ colors, setRemove, setEdit, position }) {
          <div className="card-body">
             <h5 className="card-title">Bubbles space</h5>
             <div className="window ">
-               {colors === null && <div className="">Loading...</div>}
+               {colors === null && <p className="">Loading...</p>}
                {colors !== null && !colors.length && (
-                  <div className="">New bubbles appears here</div>
+                  <p className="">
+                     New bubbles appears here. <br />
+                     <i> Does not works on small devices properly</i>
+                  </p>
                )}
                {colors !== null &&
                   colors.length !== 0 &&
@@ -30,12 +33,14 @@ export default function List({ colors, setRemove, setEdit, position }) {
                      <div
                         key={color.id}
                         className="bubble"
+
                         // onClick={(e) => getWidth(e)}
                      >
                         <div className="ball-bin">
                            <div
                               onMouseOver={() => handleMouseOver(color.id)}
                               onMouseOut={handleMouseOut}
+                              // onClick={setEdit(color)}
                               className="color-ball"
                               style={{
                                  backgroundColor: color.color,

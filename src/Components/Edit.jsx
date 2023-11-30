@@ -13,7 +13,8 @@ export default function Edit({ edit, setEdit, setUpdateBubble }) {
       setSize(edit.size);
    }, [edit]);
 
-   const save = (_) => {
+   const save = () => {
+      console.log(typeof size);
       setUpdateBubble({ ...edit, color, size });
       setEdit(null);
    };
@@ -27,7 +28,7 @@ export default function Edit({ edit, setEdit, setUpdateBubble }) {
          <div className="modal-dialog modal-dialog-centered">
             <div className="modal-content">
                <div className="modal-header">
-                  <h5 className="modal-title">Edit Color and Size</h5>
+                  <h5 className="modal-title">Edit Color</h5>
                   <button
                      type="button"
                      className="btn-close"
@@ -41,7 +42,7 @@ export default function Edit({ edit, setEdit, setUpdateBubble }) {
                         type="color"
                         value={color}
                         onChange={(e) => setColor(e.target.value)}
-                        className="form-control form-control-color w-100"
+                        className="form-control form-control-color"
                      />
                   </div>
                   <div className="mb-3">
@@ -53,8 +54,8 @@ export default function Edit({ edit, setEdit, setUpdateBubble }) {
                         min={100}
                         max={200}
                         step={1}
-                        value={size}
-                        onChange={(e) => setSize(e.target.value)}
+                        value={parseInt(size)}
+                        onChange={(e) => setSize(parseInt(e.target.value))}
                         className="form-range"
                      />
                   </div>

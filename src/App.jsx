@@ -29,6 +29,7 @@ function App() {
       if (null === create) {
          return;
       }
+      console.log(create);
       const id = store(KEY, create);
       setColors((c) => [...c, { ...create, id }]);
    }, [create]);
@@ -47,7 +48,7 @@ function App() {
       if (null === updateBubble) {
          return;
       }
-      update(KEY, updateBubble);
+      update(KEY, updateBubble.id, updateBubble);
       setColors((c) =>
          c.map((color) => (color.id === updateBubble.id ? updateBubble : color))
       );
@@ -64,6 +65,7 @@ function App() {
             <div className="col-7">
                <List
                   colors={colors}
+                  remove={remove}
                   setRemove={setRemove}
                   setEdit={setEdit}
                   // position={position}
@@ -75,6 +77,9 @@ function App() {
             edit={edit}
             setEdit={setEdit}
             setUpdateBubble={setUpdateBubble}
+            remove={remove}
+            setRemove={setRemove}
+            setClear={setClear}
          />
       </div>
    );
