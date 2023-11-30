@@ -1,7 +1,13 @@
 /* eslint-disable react/prop-types */
 import { useEffect, useState } from "react";
 
-export default function Edit({ edit, setEdit, setUpdateBubble }) {
+export default function Edit({
+   edit,
+   setEdit,
+   setUpdateBubble,
+   remove,
+   setClear,
+}) {
    const [color, setColor] = useState("#ffffff");
    const [size, setSize] = useState(100);
 
@@ -14,7 +20,6 @@ export default function Edit({ edit, setEdit, setUpdateBubble }) {
    }, [edit]);
 
    const save = () => {
-      console.log(typeof size);
       setUpdateBubble({ ...edit, color, size });
       setEdit(null);
    };
@@ -42,7 +47,7 @@ export default function Edit({ edit, setEdit, setUpdateBubble }) {
                         type="color"
                         value={color}
                         onChange={(e) => setColor(e.target.value)}
-                        className="form-control form-control-color"
+                        className="form-control form-control-color w-100"
                      />
                   </div>
                   <div className="mb-3">
@@ -67,6 +72,16 @@ export default function Edit({ edit, setEdit, setUpdateBubble }) {
                      className="btn btn-secondary"
                   >
                      Cancel
+                  </button>
+                  <button
+                     onClick={() => {
+                        setClear(remove);
+                        setEdit(null);
+                     }}
+                     type="button"
+                     className="btn btn-danger"
+                  >
+                     Remove
                   </button>
                   <button
                      type="button"

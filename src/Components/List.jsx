@@ -1,20 +1,20 @@
 /* eslint-disable react/prop-types */
-import { useState } from "react";
+// import { useState } from "react";
 
 export default function List({ colors, setRemove, setEdit }) {
-   const [hoveredElement, setHoveredElement] = useState(null);
+   // const [hoveredElement, setHoveredElement] = useState(null);
 
-   const getWidth = (e) => {
-      console.log(e);
-   };
+   // const getWidth = (e) => {
+   //    console.log(e);
+   // };
 
-   const handleMouseOver = (colorId) => {
-      setHoveredElement(colorId);
-   };
+   // const handleMouseOver = (colorId) => {
+   //    setHoveredElement(colorId);
+   // };
 
-   const handleMouseOut = () => {
-      setHoveredElement(null);
-   };
+   // const handleMouseOut = () => {
+   //    setHoveredElement(null);
+   // };
    return (
       <div className="card mt-5">
          <div className="card-body">
@@ -38,9 +38,12 @@ export default function List({ colors, setRemove, setEdit }) {
                      >
                         <div className="ball-bin">
                            <div
-                              onMouseOver={() => handleMouseOver(color.id)}
-                              onMouseOut={handleMouseOut}
-                              // onClick={setEdit(color)}
+                              // onMouseOver={() => handleMouseOver(color.id)}
+                              // onMouseOut={handleMouseOut}
+                              onClick={() => {
+                                 setEdit(color);
+                                 setRemove(color);
+                              }}
                               className="color-ball"
                               style={{
                                  backgroundColor: color.color,
@@ -50,7 +53,7 @@ export default function List({ colors, setRemove, setEdit }) {
                                  left: color.x,
                               }}
                            >
-                              {hoveredElement === color.id && (
+                              {/* {hoveredElement === color.id && (
                                  <div className="edit-btn">
                                     <button
                                        className="edit-btn-class"
@@ -66,7 +69,7 @@ export default function List({ colors, setRemove, setEdit }) {
                                        <i className="i bi-x-lg text-danger"></i>
                                     </button>
                                  </div>
-                              )}
+                              )} */}
                            </div>
                         </div>
                      </div>

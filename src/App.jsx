@@ -4,8 +4,8 @@ import Create from "./Components/Create";
 import { useEffect, useState } from "react";
 import { read, store, destroy, update } from "./Functions/ls";
 import List from "./Components/List";
-import Delete from "./Components/Delete";
 import Edit from "./Components/Edit";
+import { v4 as uuidv4 } from "uuid";
 
 const KEY = "colors";
 
@@ -29,7 +29,6 @@ function App() {
       if (null === create) {
          return;
       }
-      console.log(create);
       const id = store(KEY, create);
       setColors((c) => [...c, { ...create, id }]);
    }, [create]);
@@ -65,20 +64,20 @@ function App() {
             <div className="col-7">
                <List
                   colors={colors}
-                  remove={remove}
+                  // remove={remove}
                   setRemove={setRemove}
                   setEdit={setEdit}
                   // position={position}
                />
             </div>
          </div>
-         <Delete remove={remove} setRemove={setRemove} setClear={setClear} />
+         {/* <Delete remove={remove} setRemove={setRemove} setClear={setClear} /> */}
          <Edit
             edit={edit}
             setEdit={setEdit}
             setUpdateBubble={setUpdateBubble}
             remove={remove}
-            setRemove={setRemove}
+            // setRemove={setClear}
             setClear={setClear}
          />
       </div>
