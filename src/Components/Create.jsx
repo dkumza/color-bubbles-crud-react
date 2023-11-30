@@ -30,7 +30,7 @@ export default function Create({ setCreate }) {
    };
 
    return (
-      <div className="card mt-5 w-50">
+      <div className="card mt-5 container border">
          <div className="card-body">
             <h5 className="card-title">Create new Color Bubble</h5>
             <div className="mb-3">

@@ -74,12 +74,15 @@ function App() {
    };
 
    return (
-      <div className="container user-87548">
-         <div className="row ">
-            <div className="col-5">
+      <div className="container w-100 user-87548 mx-auto">
+         <div className="row w-100 ">
+            <div className="w-25 ">
                <Create setCreate={setCreate} />
+               <p className="text-center fst-italic small">
+                  min screen width - 1200px to work properly
+               </p>
             </div>
-            <div className="col-7">
+            <div className="w-75">
                <List
                   colors={colors}
                   // remove={remove}

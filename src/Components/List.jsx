@@ -17,15 +17,12 @@ export default function List({ colors, setRemove, setEdit }) {
    // };
    return (
       <div className="card mt-5">
-         <div className="card-body">
+         <div className="card-body d-flex flex-column justify-content-center align-items-center">
             <h5 className="card-title">Bubbles space</h5>
             <div className="window ">
                {colors === null && <p className="">Loading...</p>}
                {colors !== null && !colors.length && (
-                  <p className="">
-                     New bubbles appears here. <br />
-                     <i> Does not works on small devices properly</i>
-                  </p>
+                  <p className="m-2">New bubbles appears here:</p>
                )}
                {colors !== null &&
                   colors.length !== 0 &&
