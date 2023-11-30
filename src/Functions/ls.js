@@ -31,7 +31,7 @@ export const read = (key, id = 0) => {
 
 export const update = (key, id, value) => {
    const items = get(key).map((item) =>
-      item.id === id ? { ...value, id } : item
+      item.id === id ? { ...item, ...value, id } : item
    );
    set(key, items);
 };

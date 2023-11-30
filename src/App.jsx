@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import { read, store, destroy, update } from "./Functions/ls";
 import List from "./Components/List";
 import Edit from "./Components/Edit";
+import axios from "axios";
 import { v4 as uuidv4 } from "uuid";
 
 const KEY = "colors";
@@ -31,6 +32,7 @@ function App() {
       }
       const id = store(KEY, create);
       setColors((c) => [...c, { ...create, id }]);
+      getName(create.color, id);
    }, [create]);
 
    useEffect(() => {
@@ -51,13 +53,29 @@ function App() {
       setColors((c) =>
          c.map((color) => (color.id === updateBubble.id ? updateBubble : color))
       );
+      getName(updateBubble.color, updateBubble.id);
       setUpdateBubble(null);
       setEdit(null);
    }, [updateBubble]);
 
+   const getName = (hex, id) => {
+      hex = hex.replace("#", "");
+      const url = "https://www.thecolorapi.com/id?hex=" + hex;
+      axios
+         .get(url)
+         .then((res) => {
+            const name = res.data.name.value;
+            update(KEY, id, { name });
+            setColors((c) =>
+               c.map((color) => (color.id === id ? { ...color, name } : color))
+            );
+         })
+         .catch((err) => console.log(err));
+   };
+
    return (
       <div className="container user-87548">
-         <div className="row">
+         <div className="row ">
             <div className="col-5">
                <Create setCreate={setCreate} />
             </div>

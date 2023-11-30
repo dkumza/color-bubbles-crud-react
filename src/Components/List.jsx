@@ -53,6 +53,7 @@ export default function List({ colors, setRemove, setEdit }) {
                                  left: color.x,
                               }}
                            >
+                              <p className="color-wrap">{color.name}</p>
                               {/* {hoveredElement === color.id && (
                                  <div className="edit-btn">
                                     <button
