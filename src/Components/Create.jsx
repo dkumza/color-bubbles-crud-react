@@ -21,7 +21,7 @@ export default function Create({ setCreate }) {
 
    const add = () => {
       setCreate({
-         name: "New Color",
+         name: "Loading...",
          color,
          size: parseInt(size),
          x,
