@@ -16,7 +16,7 @@ export default function Create({ setCreate }) {
    // get random X and Y values
    const handlePosition = () => {
       setX(rand(0, 700 - size));
-      setY(rand(0, 800 - size));
+      setY(rand(0, 780 - size));
    };
 
    const add = () => {
